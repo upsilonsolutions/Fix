@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html manifest="some.appcache">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<link rel="icon" href="images/favicon.ico">	
+<title>Welcome to our site</title>
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="css/jquery.mobile-1.4.5.css">
+<link rel="stylesheet" href="css/global.css">
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAW5Bh-YMSqjLYlIMF-8unvsGMvDpSzCVc"></script>
+<script>
+function pinhover()
+	{
+	document.getElementById("legendpin").className= "legendpin_hover";
+
+	}
+function pinnormal()
+	{
+	document.getElementById("legendpin").className= "legendpin";
+
+	}
+
+</script>
+
+<script>
+function set_body_height()
+	{
+		var height=window.innerHeight+"px";
+		var map_height=window.innerHeight;
+		var map_height_str=map_height+"px";
+document.getElementById("geomap").style.height= height;
+document.getElementById("map").style.height= map_height_str;
+
+//document.getElementById("legend").style.marginBottom ="97px";
+//document.getElementById("legendch").style.marginBottom ="180px";
+ navigator.geolocation.getCurrentPosition(onSuccess, onError);
+	}
+
+</script>
+	
+</head>
+<body  onLoad="set_body_height();">
+
+	<div data-role="page" id="geomap">
+		<div class="map-wraper">
+			<div id="load_address">
+				<div id="map" style="width:100%;" ></div>
+						
+				<div id="legend">
+					<div class="nm_address"><i class="fas fa-location-arrow"></i><input type="text" id="area" value="please Drag the map to select any location"  readonly="readonly"/></div>
+					<div class="nm_point">&nbsp;</div>
+				</div>
+				<div id="legendpin" class="legendpin">&nbsp;</div>
+			</div>
+				
+		</div>
+				<!--<div id="legend"></div>-->
+	</div>
+	<button id="recenter" style="background:transparent; border:none;"><img src="images/map-center.png" width="35"></button>
+	<button id="setlocation" style="background: rgb(85, 73, 177); border: none; margin: 10px 0 0 10px; padding: 10px 15px; color: #fff; font-size: 14px; font-weight: 600; border-radius: 6px;">Update Location</button>
+			
+			
+	
+	<script>
+         
+        
+function show_map(Lan,Lot)
+{
+  var map;
+		map = new google.maps.Map(document.getElementById('map'), {
+	          zoom: 17,
+	          center: new google.maps.LatLng(Lan, Lot),
+	          mapTypeId: google.maps.MapTypeId.ROADMAP,
+	          styles: [
+	            
+	          ]
+	        });
+		document.getElementById("setlocation").addEventListener("click", function(){
+ 
+    var center = map.getCenter();
+		alert("Location Saved");
+		setloc();
+      
+    localStorage.longitude = center.lng();
+	  localStorage.latitude = center.lat();
+	      var features = [
+	          {
+	            position: new google.maps.LatLng(parseFloat(localStorage.latitude), parseFloat(localStorage.longitude)),
+	            type: 'info'
+	          }, 
+	        ];
+	
+	        for (var i = 0, feature; feature = features[i]; i++) {
+			//alert();
+	         // addMarker(feature);
+	        }
+
+	  
+});
+document.getElementById("recenter").addEventListener("click", function(){
+		
+     map.setCenter(
+        new google.maps.LatLng(parseFloat(localStorage.glatitude), parseFloat(localStorage.glongitude)), 12
+    );
+	
+ 
+    var center = map.getCenter();
+		//alert("Location Saved"+center.lng());
+		//document.getElementById("latitude").value=center.lat();
+		//document.getElementById("longitude").value=center.lng();
+      
+    var xmlhttp = new XMLHttpRequest();
+var url = "http://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyAW5Bh-YMSqjLYlIMF-8unvsGMvDpSzCVc&latlng="+center.lat()+","+center.lng()+"&sensor=true";
+//alert(url);
+var i=0;
+xmlhttp.onreadystatechange=function() {
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+    //alert(xmlhttp.responseText);
+        myFunction(xmlhttp.responseText);
+    }
+	 
+	
+}
+xmlhttp.onerror = function() { alert("No internet connection"); location.href="index.html"; }
+xmlhttp.open("GET", url, true);
+xmlhttp.send();
+
+function myFunction(response) {
+//alert(document.getElementById("legendch").style.top);
+ //document.getElementById("formatted_address").value="";
+
+ document.getElementById("setlocation").style.display="block";
+ localStorage.address ="";
+ document.getElementById("area").style.color="red";
+ document.getElementById("area").value="";
+pinnormal();
+
+    var arr = JSON.parse(response);
+
+    var i;
+    
+    //document.getElementById("formatted_address").value=arr.results[0].formatted_address;
+    document.getElementById("area").value=arr.results[0].formatted_address;
+    document.getElementById("area").style.color="blue";
+	localStorage.address =arr.results[0].formatted_address;
+	
+   
+
+    
+
+}
+
+	  
+});
+		google.maps.event.addListener(map, 'center_changed', function(){
+ 
+    var center = map.getCenter();
+		//alert("Location Saved"+center.lng());
+		//document.getElementById("latitude").value=center.lat();
+		//document.getElementById("longitude").value=center.lng();
+      
+    var xmlhttp = new XMLHttpRequest();
+var url = "https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyAW5Bh-YMSqjLYlIMF-8unvsGMvDpSzCVc&latlng="+center.lat()+","+center.lng()+"";
+//alert(url);
+console.log(url);
+var i=0;
+xmlhttp.onreadystatechange=function() {
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+    //alert(xmlhttp.responseText);
+        myFunction(xmlhttp.responseText);
+    }
+	 
+	
+}
+xmlhttp.onerror = function() { alert("No internet connection"); location.href="index.html"; }
+xmlhttp.open("GET", url, true);
+xmlhttp.send();
+
+function myFunction(response) {
+//alert(document.getElementById("legendch").style.top);
+ //document.getElementById("formatted_address").value="";
+
+ //document.getElementById("setlocation").style.display="block";
+ localStorage.address ="";
+ document.getElementById("area").style.color="red";
+ document.getElementById("area").value="";
+pinnormal();
+
+    var arr = JSON.parse(response);
+
+    var i;
+    
+    //document.getElementById("formatted_address").value=arr.results[0].formatted_address;
+    document.getElementById("area").value=arr.results[0].formatted_address;
+    document.getElementById("area").style.color="blue";
+	localStorage.address =arr.results[0].formatted_address;
+	
+   
+
+    
+
+}
+
+	  
+});
+        google.maps.event.addListener(map, 'drag', function(){
+       
+ 
+    var center = map.getCenter();
+		//alert("Location Saved"+center.lng());
+		//document.getElementById("latitude").value=center.lat();
+		//document.getElementById("longitude").value=center.lng();
+      
+    var xmlhttp = new XMLHttpRequest();
+var url = "https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyAW5Bh-YMSqjLYlIMF-8unvsGMvDpSzCVc&latlng="+center.lat()+","+center.lng()+"&sensor=true";
+//alert(url);
+var i=0;
+xmlhttp.onreadystatechange=function() {
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+    //alert(xmlhttp.responseText);
+        myFunction(xmlhttp.responseText);
+    }
+	 
+	
+}
+xmlhttp.onerror = function() { alert("No internet connection"); location.href="index.html"; }
+xmlhttp.open("GET", url, true);
+xmlhttp.send();
+
+function myFunction(response) {
+
+ document.getElementById("area").style.color="red";
+ //document.getElementById("area").value="Getting Address...";
+pinhover();
+ //alert(document.getElementById("legend").style.top);
+
+
+  
+
+    var arr = JSON.parse(response);
+
+    var i;
+    
+    //document.getElementById("area").value=arr.results[0].formatted_address;
+	//alert(arr.results[0].formatted_address);
+    document.getElementById("area").style.color="blue";
+   
+
+    
+
+}
+
+	  
+});
+
+	        var iconBase = 'images/';
+	        var icons = {
+	          info: {
+	            name: 'Info',
+	            icon: iconBase + 'map-marker.png'
+	          }
+	        };
+	
+	        function addMarker(feature) {
+	          var marker = new google.maps.Marker({
+	            position: feature.position,
+	             map: map,
+				 title: 'Hello Raja!'
+	          });
+			  
+			   
+	        }
+	
+	     
+	
+	        var legend = document.getElementById('legend');
+	        for (var key in icons) {
+	          var type = icons[key];
+	          var name = type.name;
+	          var icon = type.icon;
+	          var div = document.createElement('div');
+	          div.innerHTML = '';
+	          legend.appendChild(div);
+	        }
+	
+	         map.controls[google.maps.ControlPosition.TOP].push(legend);
+			// map.controls[google.maps.ControlPosition.CENTER].push(legendch);
+			  map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(recenter);
+			   map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(setlocation);
+			   map.controls[google.maps.ControlPosition.CENTER].push(legendpin);
+	        // alert();
+		  
+		//
+	}
+	
+	   var onSuccess = function(position) {
+	   //alert();
+	    localStorage.glongitude = position.coords.longitude;
+	  localStorage.glatitude = position.coords.latitude;
+	  localStorage.longitude = position.coords.longitude;
+	  localStorage.latitude = position.coords.latitude;
+	   show_map(position.coords.latitude,position.coords.longitude);
+       /* alert('Latitude: '          + position.coords.latitude          + '\n' +
+              'Longitude: '         + position.coords.longitude         + '\n' +
+              'Altitude: '          + position.coords.altitude          + '\n' +
+              'Accuracy: '          + position.coords.accuracy          + '\n' +
+              'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
+              'Heading: '           + position.coords.heading           + '\n' +
+              'Speed: '             + position.coords.speed             + '\n' +
+              'Timestamp: '         + position.timestamp                + '\n');*/
+    };
+
+    // onError Callback receives a PositionError object
+    //
+	
+    var onError = function(error) {
+        alert("Please turn your gps then click on set location");
+		 window.location.replace("index.html?id=steps");
+    }
+	
+
+   
+	function setloc()
+	{
+		localStorage.setloc = 1;
+		localStorage.justsetloc = 1;
+		 window.location.replace("prepare_issue_btn.html?id=steps");
+	
+	}
+	
+	
+</script>
+</body>
+
+
+
+
+
+</html>

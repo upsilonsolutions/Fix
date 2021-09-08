@@ -1,0 +1,376 @@
+@charset "UTF-8";
+@import url('../fontawesome/css/all.css');
+:root {
+    --base: #5c4db1;
+    --base-color: #fff;
+  }
+.global_wrap{
+    width:100%;
+    max-width: 500px;
+    margin:auto;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.dash_header{
+    background: var(--base);
+    padding: 10px;
+    color:  var(--base-color);
+    padding-bottom: 60px;
+}
+.dash_header a{
+    color: var(--base-color);
+}
+.logo{
+    text-align: center;
+}
+.logo img{
+    max-width: 100px;
+}
+.title{
+    font-size: 20px;
+}
+i{
+    font-size: 26px;
+}
+.cate_btn_wrap{
+    text-decoration: none;
+    text-align: center;
+    display: block;
+    line-height: 18px;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+.cate_btn{
+    text-align: center;
+    background: var(--base-color);
+    color: var(--base) !important;
+    width: 100%;
+    display: block;
+    border: 5px solid #857ac5;
+    border-radius: 100%;
+    margin-bottom: 10px;
+}
+.vertical_space15{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.content_wrap{
+    background: #fff;
+    border-radius: 30px 30px 0 0;
+    margin-top: -30px;
+    padding: 5px 0px;
+    color: var(--base);
+    padding-bottom: 50px;
+}
+.top_devider{
+    border-top: 1px solid rgba(0,0,0,0.2);
+    padding: 10px 0 0 0;
+    margin: 10px 0 0 0;
+    color:rgba(0,0,0,0.2);
+}
+img{
+    max-width: 100%;
+}
+.content_image{
+    width:30%;
+    float: left;
+}
+.content_text{
+    width:calc(70% - 10px);
+    float: left;
+    padding-left: 10px;
+    color: rgba(0,0,0,0.9);
+    font-size: 12px;
+    line-height: 22px;
+
+}
+.content_text .title{
+    font-size: 16px;
+    font-weight: 500;
+}
+.content_text .department{
+    color: rgba(0,0,0,0.5);
+    font-style: italic;
+}
+.content_text a{
+    color: var(--base);
+    text-decoration: none;
+}
+.clear{
+    font-size: 0px;
+    list-style: 0px;
+    clear: both;
+}
+.footer{
+    
+    position: absolute;
+    bottom: 60px;
+    width: 100%;
+}
+.stick{
+    position: fixed;    
+    width: 100%;
+}
+.footer_content{
+    border-radius:30px 30px 0px 0px;
+    background:var(--base);
+    height: 60px;
+    color: #fff;
+    line-height: 60px;
+}
+
+.footer_content > div{
+    width: calc( 100% / 4 );
+    float: left;
+    text-align: center;
+    border-right: 1px solid rgba(255,255,255,0.1);
+}
+.footer_content > div > a{
+    color: #fff;
+}
+.about_cont{
+    color: rgba(0,0,0,0.8);
+    border-top: 1px solid rgba(0,0,0,0.2);
+    margin-top: 10px;
+    padding: 10px 0px;
+}
+.select_menu{
+    width: 100%;
+    border: none;
+}
+.black_text{
+    color: rgba(0,0,0,0.8);
+}
+.issue_wrap .title{
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+.issue_wrap .date{
+    font-style: italic;
+    color: rgba(0,0,0,0.5);
+}
+@media only screen and (max-width: 992px) {
+}
+#legend{
+    width:90%;
+    margin-top:60px;
+    }
+    
+    .nm_address{
+    background:rgba(255, 255, 255, 0.8);
+    border:1px solid #41a0d0;
+    width:100%;
+    line-height:40px;
+    font-size:14px;
+    
+    }
+    .nm_address input{
+    border:none;
+    background:transparent;
+    width:80%;
+    padding-left:10px;
+    }
+    .nm_address i {
+        margin: 0px 0px 0px 10px;
+        vertical-align: middle;
+    }
+    .nm_point{
+    width:100%;
+    background:url(../images/map-pointet.png) no-repeat center;
+    height:21px;
+    }
+    .legendpin{
+    background:url(../images/pin.png) no-repeat center 27px;
+    width:40px;
+    height:150px;
+    }
+    .legendpin_hover{
+    background:url(../images/pin_hover.png) no-repeat top center;
+    width:40px;
+    height:150px;
+    }
+    .main_map{
+    width:100%;
+    }
+
+
+
+    .from_container{
+        font-size: 12px;
+        padding-top: 15px;
+    }
+    .from_container *:focus{
+        outline: none;
+        border:none;
+        border-bottom: 1px solid var(--base);
+    }
+    .from_container input{
+        width: 100%;
+        border:none;
+        border-bottom: 1px solid var(--base);
+        margin-bottom: 10px;
+        padding: 5px 0px;
+    }
+    .from_container textarea{
+        width: 100%;
+        border:none;
+        border-bottom: 1px solid var(--base);
+        margin-bottom: 10px;
+        padding: 5px 0px;
+    }
+    .from_container select{
+        width: 100%;
+        border:none;
+        border-bottom: 1px solid var(--base);
+        margin-bottom: 10px;
+        padding: 15px 10px;
+        font-size: 14px;
+    }
+    .from_container button{
+        width: 100%;
+        border:none;
+        background: var(--base);
+        color: #fff;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        font-size: 14px;
+        padding:10px 0px;
+        font-weight: 600;
+    }
+.btn_container{
+    background: var(--base);
+    border-radius: 50px;
+    margin: 15px auto;
+    color: #fff;
+    padding: 15px 0px;
+}
+
+.btn_container > a{
+    color: var(--base-color);
+    text-decoration: none;
+}
+.btn_image{
+    width: 80px;
+    text-align: center;
+    float: left;
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+.btn_tick{
+    width: 60px;
+    text-align: center;
+    float: left;
+    display: none;
+}
+.btn_text{
+    width: calc(100% - 160px);
+    float: left;
+    padding-left: 10px;
+}
+.show_tick{
+    display: block;    
+}
+
+#toast {
+    visibility: hidden;
+    max-width: 50px;
+    height: 50px;
+    /*margin-left: -125px;*/
+    margin: auto;
+    background-color: var(--base);
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    //border: 1px solid white;
+
+    position: fixed;
+    z-index: 1;
+    left: 0;right:0;
+    bottom: 30px;
+    font-size: 17px;
+    white-space: nowrap;
+}
+#toast #img{
+    width: 50px;
+    height: 50px;
+    
+    float: left;
+    
+    padding-top: 16px;
+    padding-bottom: 16px;
+    
+    box-sizing: border-box;
+
+    
+    background-color: var(--base);
+    color: #fff;
+}
+#toast #desc{
+
+    
+    color: #fff;
+   
+    padding: 16px;
+    
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+#toast.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, expand 0.5s 0.5s,stay 3s 1s, shrink 0.5s 2s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, expand 0.5s 0.5s,stay 3s 1s, shrink 0.5s 4s, fadeout 0.5s 4.5s;
+}
+
+@-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;} 
+    to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes expand {
+    from {min-width: 50px} 
+    to {min-width: 350px}
+}
+
+@keyframes expand {
+    from {min-width: 50px}
+    to {min-width: 350px}
+}
+@-webkit-keyframes stay {
+    from {min-width: 350px} 
+    to {min-width: 350px}
+}
+
+@keyframes stay {
+    from {min-width: 350px}
+    to {min-width: 350px}
+}
+@-webkit-keyframes shrink {
+    from {min-width: 350px;} 
+    to {min-width: 50px;}
+}
+
+@keyframes shrink {
+    from {min-width: 350px;} 
+    to {min-width: 50px;}
+}
+
+@-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;} 
+    to {bottom: 60px; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 60px; opacity: 0;}
+}
+
+
+
+
+
+
+
